@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
@@ -19,9 +19,9 @@ jobs:
       - name: Remove Existing Files from Destination Folder
         shell: pwsh
         run: |
-          Remove-Item -Path "D:\Path*" -Recurse -Force
+          Remove-Item -Path "D:\TfsData*" -Recurse -Force
 
       - name: Move Code to Destination Folder
         shell: pwsh
         run: |
-          Move-Item -Path * -Destination "D:\Path" -Force
+          Move-Item -Path * -Destination "D:\TfsData" -Force
