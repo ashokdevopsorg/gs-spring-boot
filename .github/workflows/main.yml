@@ -16,10 +16,10 @@ jobs:
         with:
           ref: master  # Checkout code from the master branc
       
-  #    - name: Remove Existing Files from Destination Folder
-  #      shell: pwsh
-  #      run: |
-  #        Remove-Item -Path "D:\TfsData*" -Recurse -Force
+      - name: Remove Existing Files from Destination Folder
+        shell: pwsh
+        run: |
+          Remove-Item -Path "D:\TfsData*" -Recurse -Force
 
       - name: Move Code to Destination Folder
         shell: pwsh
