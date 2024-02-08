@@ -23,7 +23,5 @@ jobs:
 
       - name: Move Code to Destination Folder
         shell: pwsh
-          run: |
-        
-        # Move all folders and files to the destination folder
-            Move-Item -Path * -Destination "D:\TfsData" -Force
+        run: |
+          Move-Item -Path * -Destination "D:\TfsData" -Force
