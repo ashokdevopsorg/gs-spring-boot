@@ -19,9 +19,9 @@ jobs:
       - name: Remove Existing Files from Destination Folder
         shell: pwsh
         run: |
-          Remove-Item -Path "D:\TfsData*" -Recurse -Force
+          Remove-Item -Path "D:\Path*" -Recurse -Force
 
       - name: Move Code to Destination Folder
         shell: pwsh
         run: |
-          Move-Item -Path * -Destination "D:\TfsData" -Force
+          Move-Item -Path * -Destination "D:\Path" -Force
