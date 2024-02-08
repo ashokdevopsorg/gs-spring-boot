@@ -1,24 +1,29 @@
 name: Deploy Repository A
 
-on: push
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      - name: Checkout code
+        if: github.ref == 'refs/heads/master'  # Only run this step if the branch is master
+        uses: actions/checkout@v4
+        with:
+          ref: master  # Checkout code from the master branc
+      
+      - name: Remove Existing Files from Destination Folder
+        shell: pwsh
+        run: |
+          Remove-Item -Path "D:\TfsData*" -Recurse -Force
 
-    - name: Remove Existing Files from Destination Folder
-      shell: pwsh
-      run: |
-        Remove-Item -Path "D:\TfsData*" -Recurse -Force
-
-    - name: Move Code to Destination Folder
-      shell: pwsh
-      run: |
+      - name: Move Code to Destination Folder
+        shell: pwsh
+          run: |
         
         # Move all folders and files to the destination folder
-        Move-Item -Path * -Destination "D:\TfsData" -Force
-
-    # Continue with other steps as needed
+            Move-Item -Path * -Destination "D:\TfsData" -Force
