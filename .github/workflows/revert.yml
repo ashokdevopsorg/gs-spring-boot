@@ -1,0 +1,19 @@
+name: revert
+
+on:
+  #push:
+    #branches: master
+  workflow_dispatch:
+     
+jobs:
+  prod_deployment:
+    runs-on: self-hosted 
+    environment: prod
+    steps:
+    - name: Navigate to previous git folder and pull changes
+      run: |
+        cd "C:\src2\gs-spring-boot"
+        #git clone https://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@github.com/ashokdevopsorg/gs-spring-boot.git
+        git pull 
+        git fetch --prune
+        #git checkout ${{ github.event.inputs.branch }}
