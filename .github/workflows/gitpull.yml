@@ -1,6 +1,11 @@
 name: Auto Pull Latest Code
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch name to checkout'
+        required: true
  
 jobs:
   pull_latest_code:
@@ -13,4 +18,4 @@ jobs:
         #git clone https://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@github.com/ashokdevopsorg/gs-spring-boot.git
         git pull 
         git fetch --prune
-        git checkout develop
+        git checkout ${{ github.event.inputs.branch }}
