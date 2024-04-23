@@ -9,6 +9,6 @@ jobs:
     steps:
     - name: Navigate to previous git folder and pull changes
       run: |
-        cd "C:\src"
-        git clone https://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@github.com/ashokdevopsorg/gs-spring-boot.git
-        #git pull origin master
+        cd "C:\src\gs-spring-boot"
+        #git clone https://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@github.com/ashokdevopsorg/gs-spring-boot.git
+        git pull 
