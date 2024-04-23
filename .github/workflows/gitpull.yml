@@ -2,15 +2,15 @@ name: Auto Pull Latest Code
 
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch name to checkout'
-        required: true
+    #inputs:
+     # branch:
+      #  description: 'Branch name to checkout'
+       # required: true
  
 jobs:
-  pull_latest_code:
+  sys_deployment:
     runs-on: self-hosted 
-
+    environment: develop
     steps:
     - name: Navigate to previous git folder and pull changes
       run: |
@@ -18,4 +18,30 @@ jobs:
         #git clone https://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@github.com/ashokdevopsorg/gs-spring-boot.git
         git pull 
         git fetch --prune
-        git checkout ${{ github.event.inputs.branch }}
+        #git checkout ${{ github.event.inputs.branch }}
+
+  uat_deployment:
+    runs-on: self-hosted 
+    needs: [ sys_deployment ]
+    environment: uat
+    steps:
+    - name: Navigate to previous git folder and pull changes
+      run: |
+        cd "C:\src1\gs-spring-boot"
+        #git clone https://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@github.com/ashokdevopsorg/gs-spring-boot.git
+        git pull 
+        git fetch --prune
+        #git checkout ${{ github.event.inputs.branch }}
+
+  prod_deployment:
+    runs-on: self-hosted 
+    needs: [ uat_deployment ]
+    environment: prod
+    steps:
+    - name: Navigate to previous git folder and pull changes
+      run: |
+        cd "C:\src2\gs-spring-boot"
+        #git clone https://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@github.com/ashokdevopsorg/gs-spring-boot.git
+        git pull 
+        git fetch --prune
+        #git checkout ${{ github.event.inputs.branch }}      
