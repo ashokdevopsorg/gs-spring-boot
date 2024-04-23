@@ -13,3 +13,4 @@ jobs:
         #git clone https://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@github.com/ashokdevopsorg/gs-spring-boot.git
         git pull 
         git fetch --prune
+        git checkout develop
