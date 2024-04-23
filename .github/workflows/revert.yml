@@ -14,6 +14,6 @@ jobs:
       run: |
         cd "C:\src2\gs-spring-boot"
         #git clone https://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@github.com/ashokdevopsorg/gs-spring-boot.git
-        git pull 
-        git fetch --prune
+        git revert HEAD --no-edit
+        #git fetch --prune
         #git checkout ${{ github.event.inputs.branch }}
