@@ -1,8 +1,8 @@
 name: Auto Pull Latest Code
 
 on:
-  push:
-    branches: master
+  #push:
+    #branches: master
   workflow_dispatch:
     #inputs:
      # branch:
