@@ -10,4 +10,5 @@ jobs:
     - name: Navigate to previous git folder and pull changes
       run: |
         cd "C:\src"
-        git pull origin master
+        git clone https://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@github.com/ashokdevopsorg/gs-spring-boot.git
+        #git pull origin master
