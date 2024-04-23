@@ -1,0 +1,13 @@
+name: Auto Pull Latest Code
+
+on: workflow_dispatch
+ 
+jobs:
+  pull_latest_code:
+    runs-on: self-hosted 
+
+    steps:
+    - name: Navigate to previous git folder and pull changes
+      run: |
+        cd "C:\src"
+        git pull origin master
