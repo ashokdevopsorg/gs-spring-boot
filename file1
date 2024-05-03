@@ -1,1 +1,45 @@
-this is the test file
+name: Auto Pull Latest Code
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy (sys_deployment, uat_deployment, prod_deployment)'
+        required: true
+        default: 'sys_deployment'
+
+jobs:
+  sys_deployment:
+    if: ${{ github.event.inputs.environment == 'sys_deployment' }}
+    runs-on: self-hosted
+    environment: develop
+    steps:
+      - name: Navigate to previous git folder and pull changes
+        run: |
+          cd "C:\src\gs-spring-boot"
+          git pull
+          git fetch --prune
+
+  uat_deployment:
+    if: ${{ github.event.inputs.environment == 'uat_deployment' }}
+    runs-on: self-hosted
+    needs: [sys_deployment]
+    environment: uat
+    steps:
+      - name: Navigate to previous git folder and pull changes
+        run: |
+          cd "C:\src1\gs-spring-boot"
+          git pull
+          git fetch --prune
+
+  prod_deployment:
+    if: ${{ github.event.inputs.environment == 'prod_deployment' }}
+    runs-on: self-hosted
+    needs: [uat_deployment]
+    environment: prod
+    steps:
+      - name: Navigate to previous git folder and pull changes
+        run: |
+          cd "C:\src2\gs-spring-boot"
+          git pull
+          git fetch --prune
